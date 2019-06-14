@@ -53,6 +53,9 @@ Route::group(['middleware' => 'auth'], function() {
 
         // Valores
         Route::resource('valores','ValorController'); 
+
+        //para reportes
+        Route::resource('reportesEstrategicos','ReporteEstrategicoController');
     });
 
     /**
@@ -121,6 +124,18 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Para descargar PDF de Grados
     Route::get('descargar/grados', 'GradoController@pdf')->name('grados.pdf');
+
+    //para reportes gerenciales estrategicos
+    Route::get('estrategia/reporte', 'ReporteEstrategicoController@reportes')
+    ->name('reportesEstrategicos.reporte');
+    Route::get('estrategia/reporte2', 'ReporteEstrategicoController@reportes2')
+    ->name('reportesEstrategicos.reporte2');
+    Route::get('estrategia/reporte3', 'ReporteEstrategicoController@reportes3')
+    ->name('reportesEstrategicos.reporte3');
+    Route::get('estrategia/reporte4', 'ReporteEstrategicoController@reportes4')
+    ->name('reportesEstrategicos.reporte4');
+    Route::get('estrategia/reporte5', 'ReporteEstrategicoController@reportes5')
+    ->name('reportesEstrategicos.reporte5');
 
     // Para descargar PDF de Docentes
     Route::get('descargar/docentes', 'DocenteController@pdf')->name('docentes.pdf');
