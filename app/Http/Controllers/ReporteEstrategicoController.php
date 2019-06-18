@@ -89,6 +89,23 @@ class ReporteEstrategicoController extends Controller
         return view('reportesEstrategicos.reporte5')->with('grados', $grados);
     }
 
+    public function informe(Request $request)
+    {
+        $grados = DB::select('SELECT * FROM grados');
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        //dd($fechaI);
+        if($fechaI<$fechaF)
+        {
+            dd('Exito');
+        }
+        else{
+            dd('error');
+        }
+
+        return view('reportesEstrategicos.informe1')->with('grados', $grados);
+    }
+
     public function create()
     {
         return view("reportesEstrategicos.reporte1"); 

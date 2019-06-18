@@ -136,6 +136,7 @@ Route::group(['middleware' => 'auth'], function() {
     ->name('reportesEstrategicos.reporte4');
     Route::get('estrategia/reporte5', 'ReporteEstrategicoController@reportes5')
     ->name('reportesEstrategicos.reporte5');
+    Route::post('informe1Extrategico', 'ReporteEstrategicoController@informe');
 
     // Para descargar PDF de Docentes
     Route::get('descargar/docentes', 'DocenteController@pdf')->name('docentes.pdf');
