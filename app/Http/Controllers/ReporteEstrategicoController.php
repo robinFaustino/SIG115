@@ -139,6 +139,51 @@ class ReporteEstrategicoController extends Controller
         //return view('reportesEstrategicos.informe1')->with('grados', $grados);
     }
 
+    public function informeDocente(Request $request){
+
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        $grado1='0';
+        $grado2='0';
+        //dd($fechaI, $fechaF);
+
+        if($fechaI<=$fechaF)
+        {
+
+            //dd('Exito');
+            $dato1=DB::table('asistencia_docente_grado')->where('fecha','>=',$fechaI)->where('fecha','<=',$fechaF)->get();
+            $dato2=DB::table('asistencia_docente_grado')->where('fecha','>=',$fechaI)->where('fecha','<=',$fechaF)->get();
+            $docente= DB::select('SELECT * FROM docentes');
+
+            if(count($dato1)!=0) {
+                
+                foreach ($dato1 as $dato1) {
+
+                    if($dato1->grado_id== 1){
+                        //dd($dato1->grado_id);
+                        $grado1=$dato1->asistencia+$grado1;
+                    }elseif($dato1->grado_id== 3){
+                        //dd($dato1->grado_id);
+                        $grado2=$dato1->asistencia+$grado2;
+                    }
+                    
+                }
+                //dd($grado2);
+                //return view('informeEstrategicos.informe2');
+                return view('informeEstrategicos.informe2')->with('dato2', $dato2)->with('grado1', $grado1)->with('grado2', $grado2)->with('fechaI', $fechaI)->with('fechaF', $fechaF)->with('docente',$docente);
+            }else{
+                //dd("si se encuentra elementos");
+                dd("No se encuentra elementos");
+            // no está vacío
+            }
+        }
+        else{
+            dd('error');
+        }
+
+        
+    }
+
     public function create()
     {
         return view("reportesEstrategicos.reporte1"); 
