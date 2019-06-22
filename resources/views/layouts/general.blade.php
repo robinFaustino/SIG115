@@ -161,6 +161,13 @@
             <i class="glyphicon glyphicon-file"></i> <span>Generar Reporte</span>
           </a>
         </li>
+
+        <li>
+          <a href="{{ route('reportesTacticos.index') }}">
+            <i class="glyphicon glyphicon-file"></i> <span>Generar ReporteT</span>
+          </a>
+        </li>
+        
         <li>
           <a href="{{ route('jornadas.index') }}">
             <i class="fa fa-clock-o"></i> <span>Jornada Laboral</span>

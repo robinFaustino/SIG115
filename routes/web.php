@@ -56,6 +56,9 @@ Route::group(['middleware' => 'auth'], function() {
 
         //para reportes
         Route::resource('reportesEstrategicos','ReporteEstrategicoController');
+
+        //para reportes tactico de subdirector
+        Route::resource('reportesTacticos','ReporteTacticoController');
     });
 
     /**
@@ -125,7 +128,7 @@ Route::group(['middleware' => 'auth'], function() {
     // Para descargar PDF de Grados
     Route::get('descargar/grados', 'GradoController@pdf')->name('grados.pdf');
 
-    //para reportes gerenciales estrategicos
+    //ruta para la vista de parametros reportes estrategicos
     Route::get('estrategia/reporte', 'ReporteEstrategicoController@reportes')
     ->name('reportesEstrategicos.reporte');
     Route::get('estrategia/reporte2', 'ReporteEstrategicoController@reportes2')
@@ -136,8 +139,30 @@ Route::group(['middleware' => 'auth'], function() {
     ->name('reportesEstrategicos.reporte4');
     Route::get('estrategia/reporte5', 'ReporteEstrategicoController@reportes5')
     ->name('reportesEstrategicos.reporte5');
+
+    //informe estrategicos
     Route::post('informe1Extrategico', 'ReporteEstrategicoController@informe');
     Route::post('informe2Extrategico', 'ReporteEstrategicoController@informeDocente');
+    Route::post('informe3Extrategico', 'ReporteEstrategicoController@informe3');
+    Route::post('informe4Extrategico', 'ReporteEstrategicoController@informe4');
+
+    //rutas para las vista de parametros reportes tacticos
+    Route::get('tactico/reporte', 'ReporteTacticoController@reportes')
+    ->name('reportesTacticos.reporte');
+    Route::get('tactico/reporte2', 'ReporteTacticoController@reportes2')
+    ->name('reportesTacticos.reporte2');
+    Route::get('tactico/reporte3', 'ReporteTacticoController@reportes3')
+    ->name('reportesTacticos.reporte3');
+    Route::get('tactico/reporte4', 'ReporteTacticoController@reportes4')
+    ->name('reportesTacticos.reporte4');
+    Route::get('tactico/reporte5', 'ReporteTacticoController@reportes5')
+    ->name('reportesTacticos.reporte5');
+    Route::get('tactico/reporte6', 'ReporteTacticoController@reportes6')
+    ->name('reportesTacticos.reporte6');
+
+    //informe tactico
+    Route::post('informe1Tactico', 'ReporteTacticoController@informe');
+
 
     // Para descargar PDF de Docentes
     Route::get('descargar/docentes', 'DocenteController@pdf')->name('docentes.pdf');

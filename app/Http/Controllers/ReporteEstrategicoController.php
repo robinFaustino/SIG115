@@ -184,6 +184,98 @@ class ReporteEstrategicoController extends Controller
         
     }
 
+    public function informe3(Request $request)
+    {
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        $segundo=0;
+        $noveno=0;
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("correcto");
+            $grados=DB::table('alumno_grado')->where('created_at','>=',$fechaI)->where('created_at','<=',$fechaF)->where('estado','=','reprobado')->get();
+            //$grados=DB::table('alumno_grado')->count('grado_id')->where('created_at','>=',$fechaI)->where('created_at','<=',$fechaF)->where('estado','=','reprobado')->get();
+            //$grados=DB::table('alumno_grado')->where('estado','=','reprobado')->groupBy('grado_id')->get();
+            //$grados=DB::table('alumno_grado')->count('grado_id')->where('estado','=','reprobado');
+            //$grados = DB::table('alumno_grado')->select('grado_id')->groupBy('grado_id')->get();
+            //dd($grados);
+
+            if(count($grados)!=0) {
+                //dd("si hay datos");
+                foreach ($grados as $grados) {
+                    if ($grados->grado_id==1) {
+                        $segundo=$segundo + 1;
+                    }
+                    elseif ($grados->grado_id==3) {
+                        $noveno = $noveno + 1;
+                    }
+                }
+
+                return view("informeEstrategicos.informe3")->with('segundo', $segundo)->with('noveno', $noveno)->with('fechaI', $fechaI)->with('fechaF', $fechaF);
+                
+
+            }else{
+                
+                dd("No se encuentra elementos");
+            
+            }
+
+            //dd($alum_eval);
+        }
+        else{
+            dd('error');
+        }
+
+        dd("funciona");
+
+        return view("informeEstrategicos.informe3");
+    }
+
+    public function informe4(Request $request)
+    {
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        $segundo=0;
+        $noveno=0;
+        //dd("funciona");
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("fecha valida");
+            $asistencia=DB::table('asistencias')->where('fecha','>=',$fechaI)->where('fecha','<=',$fechaF)->get();
+ 
+            //dd($asistencia);
+            if(count($asistencia)!=0) {
+                //dd($asistencia);
+
+                foreach ($asistencia as $asis) {
+                    if ($asis->grado_id==1) {
+                        if ($asis->asistencia==0) {
+                            $segundo=$segundo+1;
+                        }else{
+
+                        }
+                    }
+                    elseif ($asis->grado_id==3) {
+                        if ($asis->asistencia==0) {
+                            $noveno = $noveno+1;
+                        }
+                    }
+                }
+
+                return view("informeEstrategicos.informe4")->with('segundo', $segundo)->with('noveno', $noveno)->with('fechaI', $fechaI)->with('fechaF', $fechaF);
+
+            }else{
+                dd("No se encuentra elementos");
+            }
+            dd($noveno);
+
+        }else{
+            dd('error');
+        }
+    }
+
     public function create()
     {
         return view("reportesEstrategicos.reporte1"); 
