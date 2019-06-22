@@ -83,7 +83,43 @@ class ReporteTacticoController extends Controller
         $grados = DB::select('SELECT * FROM grados');
         $fechaI=$request->get('fecha1');
         $fechaF=$request->get('fecha2');
-        dd($request->all());
+        $nombre=$request->get('nombre');
+        $seccion=$request->get('seccion');
+        //dd($request->all());
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("funciona");
+            $resul=DB::table('asistencias')
+                ->join('alumnos','asistencias.alumno_id','=','alumnos.id')
+                ->join('grados','asistencias.grado_id','=','grados.id')
+                ->where('grados.nombre','=',$nombre)
+                ->where('grados.seccion','=',$seccion)
+                ->where('asistencias.asistencia','=',1)
+                ->where('asistencias.fecha','>=',$fechaI)
+                ->where('asistencias.fecha','<=',$fechaF)
+                ->select('alumnos.nombre as nombreAlum','alumnos.apellido','grados.nombre','alumnos.genero','asistencias.fecha')
+                ->orderBy('alumnos.genero')
+                ->get();
+
+            //dd($resul);
+            if(count($resul)!=0) {
+
+                return view('informeTactico.informe1')
+                        ->with('resul', $resul)
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF);
+
+            }else{
+                //dd("si se encuentra elementos");
+                dd("No se encuentra elementos");
+            // no está vacío
+            }
+
+        }
+        else{
+            dd('error');
+        }
 
     }
 }
