@@ -230,4 +230,80 @@ class ReporteTacticoController extends Controller
 
 
     }
+
+    public function informe4(Request $request)
+    {
+        $grados = DB::select('SELECT * FROM grados');
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        //$genero=$request->get('genero');
+        $noveno=0; $segundo=0; $sexto=0; $quinto=0; $primero=0; $quarto=0; $tercero=0; $septimo=0; $octavo=0;
+        //dd($segundo);
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("funciona");
+            $resul=DB::table('grado_laboratorio')
+                ->join('laboratorios','grado_laboratorio.laboratorio_id','=','laboratorios.id')
+                ->join('grados','grado_laboratorio.grado_id','=','grados.id')
+                ->where('grado_laboratorio.fecha','>=',$fechaI)
+                ->where('grado_laboratorio.fecha','<=',$fechaF)
+                ->select('laboratorios.nombre as nombreLab','grados.nombre','grados.id','grado_laboratorio.utiliza','grados.seccion')
+                ->orderBy('grados.id')
+                ->get();
+            //dd($resul);
+            if(count($resul)!=0) {
+
+                foreach ($resul as $resul) {
+                    $nomLap=$resul->nombreLab;
+                    if($resul->id==1)
+                    {
+                        $segundo=$segundo+1;  
+                    }elseif ($resul->id==3) {
+                        $noveno=$noveno+1;
+                    }elseif ($resul->id==4) {
+                        $sexto=$sexto+1;
+                    }elseif ($resul->id==5) {
+                        $quinto=$quinto+1;
+                    }elseif ($resul->id==6) {
+                        $primero=$primero+1;
+                    }elseif ($resul->id==7) {
+                        $quarto=$quarto+1;
+                    }elseif ($resul->id==8) {
+                        $tercero=$tercero+1;
+                    }elseif ($resul->id==9) {
+                        $septimo=$septimo+1;
+                    }elseif ($resul->id==10) {
+                        $octavo=$octavo+1;
+                    }   
+                }
+
+                //dd($nomLap);
+                return view('informeTactico.informe4')
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF)
+                        ->with('primero',$primero)
+                        ->with('segundo', $segundo)
+                        ->with('tercero', $tercero)
+                        ->with('quarto', $quarto)
+                        ->with('quinto', $quinto)
+                        ->with('sexto', $sexto)
+                        ->with('septimo', $septimo)
+                        ->with('octavo', $octavo)
+                        ->with('noveno', $noveno)
+                        ->with('nomLap', $nomLap);
+
+            }else{
+                //dd("si se encuentra elementos");
+                dd("No se encuentra elementos");
+            // no está vacío
+            }
+
+        }
+        else{
+            dd('error');
+        }   
+    }
+    
+
 }
