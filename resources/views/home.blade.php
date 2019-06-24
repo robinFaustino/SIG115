@@ -13,8 +13,12 @@
 @endsection
 
 @section('contenido')
+
 <div class="row">
-  <div class="col-md-4">
+  <center>
+   <h1>Bienvenidos al Sistema de Información Gerencial </h1>  
+ </center> <br>
+  <div class="col-md-4 col-md-offset-4" >
 
     <!-- Profile Image -->
     <div class="box box-primary">
@@ -35,5 +39,6 @@
     </div>
     <!-- /.box -->
   </div>
+
 </div>
 @endsection

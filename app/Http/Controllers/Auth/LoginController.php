@@ -47,7 +47,7 @@ class LoginController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function login(Request $request)
+   /* public function login(Request $request)
     {
         // No permitir ingresar si el usuario está de baja.
         $user = User::where('email', $request->email)->first();
@@ -71,7 +71,7 @@ class LoginController extends Controller
             if ($user->estado == 1) {
                 return $this->sendLoginResponse($request);
             }
-        }*/
+        }
 
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
@@ -83,5 +83,5 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
-    }
+    }*/
 }

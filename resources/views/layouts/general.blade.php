@@ -60,7 +60,7 @@
         <img src="{{ asset('img/sistema/logo_blanco.png') }}" class="logo-mini-tamanio" alt="Mini logo" />
       </span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Anastasio Aquino</span>
+      <span class="logo-lg"> C.E. El Torogoz</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -127,8 +127,13 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         @if (Auth::user()->direc())
-        <li class="header">GESTIÓN ACADÉMICA</li>
+        <li class="header">ESTRATEGICO</li>
         <li>
+          <a href="{{ route('reportesEstrategicos.index') }}">
+            <i class="glyphicon glyphicon-file"></i> <span>Reportes Estrategicos</span>
+          </a>
+        </li>
+      <!--  <li>
           <a href="{{ route('grados.index') }}">
             <i class="fa fa-graduation-cap"></i> <span>Grados</span>
           </a>
@@ -148,23 +153,19 @@
           <a href="{{ route('notas.index') }}">
             <i class="fa fa-star"></i> <span>Notas</span>
           </a>
-        </li>
+        </li> -->
         @if (Auth::user()->direc())
-        <li class="header">PERSONAL</li>
-        <li>
-          <a href="{{ route('docentes.index') }}">
-            <i class="fa fa-users"></i> <span>Docentes</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('reportesEstrategicos.index') }}">
-            <i class="glyphicon glyphicon-file"></i> <span>Generar Reporte</span>
-          </a>
-        </li>
+        <li class="header">TÁCTICO</li>
 
         <li>
           <a href="{{ route('reportesTacticos.index') }}">
-            <i class="glyphicon glyphicon-file"></i> <span>Generar ReporteT</span>
+            <i class="glyphicon glyphicon-file"></i> <span>Reportes Tácticos</span>
+          </a>
+        </li>
+
+     <!--   <li>
+          <a href="{{ route('docentes.index') }}">
+            <i class="fa fa-users"></i> <span>Docentes</span>
           </a>
         </li>
         
@@ -172,10 +173,10 @@
           <a href="{{ route('jornadas.index') }}">
             <i class="fa fa-clock-o"></i> <span>Jornada Laboral</span>
           </a>
-        </li>
+        </li> -->
         @endif
         <li class="header">ADMINISTRACIÓN</li>
-        <li>
+       <!-- <li>
           <a href="{{ route('reportes') }}">
             <i class="fa fa-book"></i> <span>Reportes</span>
           </a>
@@ -205,12 +206,12 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+         <ul class="treeview-menu">
             <li><a href=" {{ route('nivel.index')}} "><i class="fa fa-circle-o"></i> Niveles educativos</a></li>
             <li><a href=" {{ route('anios.index') }}"><i class="fa fa-circle-o"></i> Años escolares</a></li>
             <li><a href=" {{ route('materias.index')}} "><i class="fa fa-circle-o"></i> Materias</a></li>
             <li><a href=" {{ route('valores.index')}} "><i class="fa fa-circle-o"></i> Valores</a></li>
-          </ul>
+          </ul> -->
         </li>
         <li class="treeview">
           <a href="#">
@@ -258,7 +259,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; {{ $anio }} <a href="#">Centro Escolar Anastasio Aquino</a></strong>
+    <strong>Copyright &copy; {{ $anio }} <a href="/home">Centro Escolar El Torogoz</a></strong>
   </footer>
 </div>
 <!-- ./wrapper -->
