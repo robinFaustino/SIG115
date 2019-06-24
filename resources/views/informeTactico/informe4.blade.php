@@ -23,15 +23,15 @@
     </div>
 
     <div class="col-xs-12 col-sm-4">
-  	    <h3 align="center">
-  		Centro Escolar Anastasio Aquino <br>
-		Canton San Antonio Abajo <br>
-		Santiago Nonualco, La Paz<br>
-		Codigo 12053 <br>
-  	    </h3>
-  	<center>
-		<img src="{{ asset('img/sistema/logo_ceaa.png') }}" style="width: 104px; height:139px;" >
-	</center>
+  	    <h4 align="center">
+      Centro Escolar El Torogoz <br>
+    Canton San Antonio Abajo <br>
+    Santiago Nonualco, La Paz<br>
+    Codigo 12053 <br>
+        </h4>
+    <center>
+    <img src="{{ asset('img/sistema/logo_ceaa.png') }}" style="width: 104px; height:139px;" >
+  </center>
     </div>
 
     <div class="col-xs-12 col-sm-4">

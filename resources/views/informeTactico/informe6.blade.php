@@ -7,7 +7,7 @@
 <button type="button" class="btn btn-primary" style="margin-right: 5px;" onclick="window.print()">
             <i class="fa fa-download"></i> Generar PDF
 </button>
-<a href="{{ url('tactico/reporte2') }}"><button class="btn btn-danger">Regresar</button></a>
+<a href="{{ url('tactico/reporte6') }}"><button class="btn btn-danger">Regresar</button></a>
 <a href="#"><button class="btn btn-info">Ayuda</button></a>
 </center>
 
@@ -23,15 +23,15 @@
     </div>
 
     <div class="col-xs-12 col-sm-4">
-  	    <h4 align="center">
-      Centro Escolar El Torogoz <br>
-    Canton San Antonio Abajo <br>
-    Santiago Nonualco, La Paz<br>
-    Codigo 12053 <br>
-        </h4>
-    <center>
-    <img src="{{ asset('img/sistema/logo_ceaa.png') }}" style="width: 104px; height:139px;" >
-  </center>
+  	    <h3 align="center">
+  		Centro Escolar Anastasio Aquino <br>
+		Canton San Antonio Abajo <br>
+		Santiago Nonualco, La Paz<br>
+		Codigo 12053 <br>
+  	    </h3>
+  	<center>
+		<img src="{{ asset('img/sistema/logo_ceaa.png') }}" style="width: 104px; height:139px;" >
+	</center>
     </div>
 
     <div class="col-xs-12 col-sm-4">
@@ -40,25 +40,36 @@
 
 </div>
 
-<h4 align="center">Alumnos ausentes del Grado: {{$nombre}} Seccion: {{$seccion}}</h4>
+<h4 align="center">Índice conductual de los alumnos</h4>
+<h4 align="center">Grado:  {{$nombre}}</h4>
+<h4 align="center">Seccion:  {{$seccion}}</h4>
 
 <div class="table-responsive">
      <table class="table table-hover table-striped table-bordered table-quitar-margen">
         <thead>
           <tr>
-            <th>Nombre Alumno:</th>
-            <th>Grado:</th>
-            <th>Genero:</th>
-            <th>Fecha:</th>
+            <th>Nombre Alumno</th>
+            <th>Grado</th>
+            <th>Genero</th>
+            <th>Conducta</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($resul as $resul)          		
           	<tr>
           		<td>{{$resul->apellido}}, {{$resul->nombreAlum}}</td>
-          		<td>{{$resul->nombre}}</td>
-              <td>{{$resul->genero}}</td>
-              <td>{{$resul->fecha}}</td>
+          		<td>{{$resul->nombre}}  {{$resul->seccion}}</td>
+              <?php
+
+              if ($resul->genero='M') {
+                $genero='Masculino';
+              }else{
+                $genero='Femenino';
+              }
+
+              ?>
+              <td>{{$genero}}</td>
+              <td>{{$resul->conducta}}</td>
             </tr>
           @endforeach 
 		</tbody>
