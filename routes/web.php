@@ -163,6 +163,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     //informe tactico
     Route::post('informe1Tactico', 'ReporteTacticoController@informe');
+    Route::post('informe2Tactico', 'ReporteTacticoController@informe2');
+    Route::post('informe3Tactico', 'ReporteTacticoController@informe3');
+    Route::post('informe4Tactico', 'ReporteTacticoController@informe4');
 
 
     // Para descargar PDF de Docentes

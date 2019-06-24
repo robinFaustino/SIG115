@@ -41,6 +41,7 @@ class ReporteTacticoController extends Controller
     public function reportes2(Request $request)
     {
         $grados = DB::select('SELECT * FROM grados');
+        $alum = DB::select('SELECT * FROM alumnos');
         //dd("funciona reporte2");
 
         return view('reportesTacticos.reporte2')->with('grados', $grados);
@@ -122,4 +123,187 @@ class ReporteTacticoController extends Controller
         }
 
     }
+
+    public function informe2(Request $request)
+    {
+        $grados = DB::select('SELECT * FROM grados');
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        $nombre=$request->get('nombre');
+        $seccion=$request->get('seccion');
+
+        //dd("funciona");
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("funciona");
+
+            $resul=DB::table('asistencias')
+                ->join('alumnos','asistencias.alumno_id','=','alumnos.id')
+                ->join('grados','asistencias.grado_id','=','grados.id')
+                ->where('grados.nombre','=',$nombre)
+                ->where('grados.seccion','=',$seccion)
+                ->where('asistencias.asistencia','=',0)
+                ->where('asistencias.fecha','>=',$fechaI)
+                ->where('asistencias.fecha','<=',$fechaF)
+                ->select('alumnos.nombre as nombreAlum','alumnos.apellido','grados.nombre','alumnos.genero','asistencias.fecha')
+                ->orderBy('alumnos.genero')
+                ->get();
+
+            //dd($resul);
+            if(count($resul)!=0) {
+
+                return view('informeTactico.informe2')
+                        ->with('resul', $resul)
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF)
+                        ->with('nombre', $nombre)
+                        ->with('seccion', $seccion);
+
+            }else{
+                //dd("si se encuentra elementos");
+                dd("No se encuentra elementos");
+            // no está vacío
+            }
+
+        }
+        else{
+            dd('error');
+        }
+
+    }
+
+
+    public function informe3(Request $request)
+    {
+        $grados = DB::select('SELECT * FROM grados');
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        $genero=$request->get('genero');
+        $noveno=0;
+        $segundo=0;
+        //dd($genero);
+
+        //dd($request->all());
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("funciona");
+            $resul=DB::table('alumno_grado')
+                ->join('alumnos','alumno_grado.alumno_id','=','alumnos.id')
+                ->join('grados','alumno_grado.grado_id','=','grados.id')
+                ->where('alumnos.genero','=',$genero)
+                ->where('alumno_grado.estado','=','reprobado')
+                ->where('alumno_grado.created_at','>=',$fechaI)
+                ->where('alumno_grado.created_at','<=',$fechaF)
+                ->select('alumnos.nombre as nombreAlum','alumnos.apellido','grados.nombre','alumnos.genero','grados.id','alumno_grado.estado')
+                ->get();
+            //$resul
+
+            if(count($resul)!=0) {
+                foreach ($resul as $resul) {
+                    if($resul->id==1)
+                    {
+                        $segundo=$segundo+1;  
+                    }elseif ($resul->id==3) {
+                        $noveno=$noveno+1;
+                    }   
+                }
+                //dd($segundo);
+                return view('informeTactico.informe3')
+                        ->with('segundo', $segundo)
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF)
+                        ->with('noveno', $noveno)
+                        ->with('genero', $genero);
+
+            }else{
+                //dd("si se encuentra elementos");
+                dd("No se encuentra elementos");
+            // no está vacío
+            }
+
+        }
+        else{
+            dd('error');
+        }        
+
+
+    }
+
+    public function informe4(Request $request)
+    {
+        $grados = DB::select('SELECT * FROM grados');
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        //$genero=$request->get('genero');
+        $noveno=0; $segundo=0; $sexto=0; $quinto=0; $primero=0; $quarto=0; $tercero=0; $septimo=0; $octavo=0;
+        //dd($segundo);
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("funciona");
+            $resul=DB::table('grado_laboratorio')
+                ->join('laboratorios','grado_laboratorio.laboratorio_id','=','laboratorios.id')
+                ->join('grados','grado_laboratorio.grado_id','=','grados.id')
+                ->where('grado_laboratorio.fecha','>=',$fechaI)
+                ->where('grado_laboratorio.fecha','<=',$fechaF)
+                ->select('laboratorios.nombre as nombreLab','grados.nombre','grados.id','grado_laboratorio.utiliza','grados.seccion')
+                ->orderBy('grados.id')
+                ->get();
+            //dd($resul);
+            if(count($resul)!=0) {
+
+                foreach ($resul as $resul) {
+                    $nomLap=$resul->nombreLab;
+                    if($resul->id==1)
+                    {
+                        $segundo=$segundo+1;  
+                    }elseif ($resul->id==3) {
+                        $noveno=$noveno+1;
+                    }elseif ($resul->id==4) {
+                        $sexto=$sexto+1;
+                    }elseif ($resul->id==5) {
+                        $quinto=$quinto+1;
+                    }elseif ($resul->id==6) {
+                        $primero=$primero+1;
+                    }elseif ($resul->id==7) {
+                        $quarto=$quarto+1;
+                    }elseif ($resul->id==8) {
+                        $tercero=$tercero+1;
+                    }elseif ($resul->id==9) {
+                        $septimo=$septimo+1;
+                    }elseif ($resul->id==10) {
+                        $octavo=$octavo+1;
+                    }   
+                }
+
+                //dd($nomLap);
+                return view('informeTactico.informe4')
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF)
+                        ->with('primero',$primero)
+                        ->with('segundo', $segundo)
+                        ->with('tercero', $tercero)
+                        ->with('quarto', $quarto)
+                        ->with('quinto', $quinto)
+                        ->with('sexto', $sexto)
+                        ->with('septimo', $septimo)
+                        ->with('octavo', $octavo)
+                        ->with('noveno', $noveno)
+                        ->with('nomLap', $nomLap);
+
+            }else{
+                //dd("si se encuentra elementos");
+                dd("No se encuentra elementos");
+            // no está vacío
+            }
+
+        }
+        else{
+            dd('error');
+        }   
+    }
+    
+
 }
