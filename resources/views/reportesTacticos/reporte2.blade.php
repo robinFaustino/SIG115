@@ -70,7 +70,7 @@
   		<div class="row">
  	    	<center>
  	    		<a href="#"><button class="btn btn-info">Generar reporte</button></a>
- 	    		<a href="#"><button class="btn btn-danger">Salir</button></a>
+ 	    		<a href="{{ route('reportesTacticos.index') }}" class="btn btn-danger">Salir</a>
  	    		<a href="#"><button class="btn btn-Warning">Ayuda</button></a>
  	    	</center>
   		</div>

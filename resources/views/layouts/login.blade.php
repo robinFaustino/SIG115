@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('titulo', 'CEAA')</title>
+  <title>@yield('titulo', 'C.E. El Torogoz')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- CSRF Token -->
@@ -37,7 +37,7 @@
 <body class="hold-transition login-page login-fondo">
 <div class="login-box">
   <div class="login-logo login-logo-color">
-    <p>@yield('login-logo', 'CEAA')</p>
+    <p>@yield('login-logo', 'C.E. El Torogoz')</p>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

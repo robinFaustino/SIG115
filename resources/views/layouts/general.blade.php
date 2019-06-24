@@ -128,10 +128,20 @@
       <ul class="sidebar-menu" data-widget="tree">
         @if (Auth::user()->direc())
         <li class="header">ESTRATEGICO</li>
-        <li>
-          <a href="{{ route('reportesEstrategicos.index') }}">
+         <li class="treeview">
+          <a href="#">
             <i class="glyphicon glyphicon-file"></i> <span>Reportes Estrategicos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('reportesEstrategicos.reporte') }}"><i class="fa fa-circle-o"></i> Asistencias de alumnos</a></li>
+            <li><a href="{{ route('reportesEstrategicos.reporte2') }}"><i class="fa fa-circle-o"></i> Asistencia de profesores</a></li>
+            <li><a href="{{ route('reportesEstrategicos.reporte3') }}"><i class="fa fa-circle-o"></i> Índice de reprobados</a></li>
+            <li><a href="{{ route('reportesEstrategicos.reporte4') }}"><i class="fa fa-circle-o"></i> Porcentaje de alumnos ausentes</a></li>
+            <li><a href="{{ route('reportesEstrategicos.reporte5') }}"><i class="fa fa-circle-o"></i> Porcentaje de alumnos sobresalientes</a></li>
+          </ul>
         </li>
       <!--  <li>
           <a href="{{ route('grados.index') }}">
@@ -157,10 +167,21 @@
         @if (Auth::user()->direc())
         <li class="header">TÁCTICO</li>
 
-        <li>
-          <a href="{{ route('reportesTacticos.index') }}">
+        <li class="treeview">
+          <a href="#">
             <i class="glyphicon glyphicon-file"></i> <span>Reportes Tácticos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('reportesTacticos.reporte') }}"><i class="fa fa-circle-o"></i> Asistencias de alumnos</a></li>
+            <li><a href="{{ route('reportesTacticos.reporte2') }}"><i class="fa fa-circle-o"></i> Alumnos aunsentes</a></li>
+            <li><a href="{{ route('reportesTacticos.reporte3') }}"><i class="fa fa-circle-o"></i> Alumnos Reprobados</a></li>
+            <li><a href="{{ route('reportesTacticos.reporte4') }}"><i class="fa fa-circle-o"></i> Utilizacion de los laboratorio</a></li>
+            <li><a href="{{ route('reportesTacticos.reporte5') }}"><i class="fa fa-circle-o"></i> Horas trabajadas por docentes</a></li>
+            <li><a href="{{ route('reportesTacticos.reporte6') }}"><i class="fa fa-circle-o"></i> Indice conductual</a></li>
+          </ul>
         </li>
 
      <!--   <li>
