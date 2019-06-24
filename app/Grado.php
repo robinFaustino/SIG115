@@ -101,6 +101,13 @@ class Grado extends Model
             ->withTimestamps();
     }
 
+     public function materias2()
+    {
+        return $this->belongsToMany('DSIproject\Materia', 'alumno_nota')
+            ->withPivot('alumno_id')
+            ->withTimestamps();
+    }
+
     /**
      * Obtiene los valores que se evalúan a los alumnos en el grado.
      *

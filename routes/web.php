@@ -145,6 +145,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('informe2Extrategico', 'ReporteEstrategicoController@informeDocente');
     Route::post('informe3Extrategico', 'ReporteEstrategicoController@informe3');
     Route::post('informe4Extrategico', 'ReporteEstrategicoController@informe4');
+    Route::post('informe4Extrategico', 'ReporteEstrategicoController@informe5');
 
     //rutas para las vista de parametros reportes tacticos
     Route::get('tactico/reporte', 'ReporteTacticoController@reportes')

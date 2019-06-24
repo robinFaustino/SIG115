@@ -280,6 +280,44 @@ class ReporteEstrategicoController extends Controller
     {
         return view("reportesEstrategicos.reporte1"); 
     }
+
+
+    public function informe5(Request $request)
+    {
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        $nota=$request->get('nota');
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("fecha valida");
+            $registros=DB::table('alumno_nota')
+                ->join('alumnos','alumno_nota.alumno_id','=','alumnos.id')
+                ->join('grados','alumno_nota.grado_id','=','grados.id')
+                ->join('materias','alumno_nota.materia_id','=','materias.id')
+                ->where('alumno_nota.trimestre1','>=',$nota)
+                ->where('alumno_nota.created_at','>=',$fechaI)
+                ->where('alumno_nota.updated_at','<=',$fechaF)
+                ->select('alumnos.nombre as nombreAlum','alumnos.apellido as apellidoAlum','grados.nombre as grado','materias.nombre as materia','alumno_nota.trimestre1 as nota')
+                ->orderBy('grados.id')
+                ->get();
+
+            //dd($registros);
+             if(count($registros)!=0) {
+
+                return view('informeEstrategicos.informe5')
+                        ->with('registros', $registros)
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF);
+
+            }else{
+                dd("No se encuentra elementos");
+            }
+        }
+        else {
+            dd('Error en el rago de fecha');
+        }
+    }
 //
 /*    public function store(ExperienciaLaboralFormRequest $request)
     {
