@@ -3,6 +3,8 @@
 namespace DSIproject\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use DSIproject\Grado;
 use DB;
 
@@ -295,15 +297,68 @@ class ReporteTacticoController extends Controller
 
             }else{
                 //dd("si se encuentra elementos");
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('tactico/reporte4');
             // no está vacío
             }
 
         }
         else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('tactico/reporte4');
         }   
     }
     
+    public function informe6(Request $request)
+    {
+        $grados = DB::select('SELECT * FROM grados');
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+        $nombre=$request->get('nombre');
+        $seccion=$request->get('seccion');
+        $criterio=$request->get('criterio');
+
+        if($fechaI<=$fechaF)
+        {
+            //dd("funciona");
+            $resul=DB::table('alumno_grado')
+                ->join('alumnos','alumno_grado.alumno_id','=','alumnos.id')
+                ->join('grados','alumno_grado.grado_id','=','grados.id')
+                ->where('alumno_grado.created_at','>=',$fechaI)
+                ->where('alumno_grado.created_at','<=',$fechaF)
+                ->where('alumno_grado.conducta','=',$criterio)
+                ->where('grados.nombre','=',$nombre)
+                ->where('grados.seccion','=',$seccion)
+                ->select('alumnos.nombre as nombreAlum','alumnos.apellido','alumnos.genero','grados.nombre','grados.seccion','alumno_grado.conducta')
+                ->orderBy('alumnos.genero')
+                ->get();
+            //dd($resul);
+
+            if(count($resul)!=0) {
+
+                //dd("funciona");
+                return view('informeTactico.informe6')
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF)
+                        ->with('seccion',$seccion)
+                        ->with('nombre',$nombre)
+                        ->with('resul', $resul);
+
+            }else{
+                //dd("si se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('tactico/reporte6');
+            // no está vacío
+            }
+
+
+        }
+        else{
+            //dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('tactico/reporte6');
+        } 
+
+    }
 
 }

@@ -167,6 +167,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('informe3Tactico', 'ReporteTacticoController@informe3');
     Route::post('informe4Tactico', 'ReporteTacticoController@informe4');
 
+    Route::post('informe6Tactico', 'ReporteTacticoController@informe6');
+
 
     // Para descargar PDF de Docentes
     Route::get('descargar/docentes', 'DocenteController@pdf')->name('docentes.pdf');
