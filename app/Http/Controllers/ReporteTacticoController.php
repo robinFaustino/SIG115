@@ -308,6 +308,37 @@ class ReporteTacticoController extends Controller
             return redirect('tactico/reporte4');
         }   
     }
+
+    public function informe5(Request $request)
+    {
+        $fechaI=$request->get('fecha1');
+        $fechaF=$request->get('fecha2');
+
+         if($fechaI<=$fechaF)
+        {
+            //dd("funciona");
+            $registros = DB::table('jornadas')
+            ->join('docentes','jornadas.docente_id','=','docentes.id')
+            ->join('users','docentes.user_id','=','users.id')
+            ->where('fecha','>=',$fechaI)
+            ->where('fecha','<=',$fechaF)
+            ->select('users.nombre as nombre', 'users.apellido as apellido', 'docentes.nip as nip', 'jornadas.hora_entrada as entrada', 'jornadas.hora_salida as salida')
+            ->orderBy('docentes.id')
+            ->get();
+
+           // dd($registros);
+
+            return view('informeTactico.informe5')
+                    ->with('fechaI',$fechaI)
+                    ->with('fechaF',$fechaF)
+                    ->with('registros',$registros);
+
+            dd($registros);
+        } else{
+            dd("error");
+        }
+
+    }
     
     public function informe6(Request $request)
     {

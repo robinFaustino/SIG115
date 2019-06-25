@@ -166,7 +166,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('informe2Tactico', 'ReporteTacticoController@informe2');
     Route::post('informe3Tactico', 'ReporteTacticoController@informe3');
     Route::post('informe4Tactico', 'ReporteTacticoController@informe4');
-
+    Route::post('informe5Tactico', 'ReporteTacticoController@informe5');
     Route::post('informe6Tactico', 'ReporteTacticoController@informe6');
 
 
