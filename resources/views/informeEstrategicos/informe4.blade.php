@@ -46,19 +46,54 @@
      <table class="table table-hover table-striped table-bordered table-quitar-margen">
         <thead>
           <tr>
-            <th>Grado</th>
+            <th>Grados</th>
             <th>Reprobados</th>
           </tr>
         </thead>
         <tbody>          		
           	<tr>
-          		<td>Segundo</td>
-          		<td>{{$segundo}}</td>
+              <td>Primer Grado</td>
+              <td>{{$primero}}</td>
             </tr>
 
             <tr>
-          		<td>Noveno</td>
-          		<td>{{$noveno}}</td>
+              <td>Segundo Grado</td>
+              <td>{{$segundo}}</td>
+            </tr>
+
+            <tr>
+              <td>Tercer Grado</td>
+              <td>{{$tercero}}</td>
+            </tr>
+
+            <tr>
+              <td>Quarto Grado</td>
+              <td>{{$quarto}}</td>
+            </tr>
+
+            <tr>
+              <td>Quinto Grado</td>
+              <td>{{$quinto}}</td>
+            </tr>
+
+            <tr>
+              <td>Sexto Grado</td>
+              <td>{{$sexto}}</td>
+            </tr>
+
+            <tr>
+              <td>Septimo Grado</td>
+              <td>{{$septimo}}</td>
+            </tr>
+
+            <tr>
+              <td>Octavo Grado</td>
+              <td>{{$octavo}}</td>
+            </tr>
+
+            <tr>
+              <td>Noveno Grado</td>
+              <td>{{$noveno}}</td>
             </tr>          
 		</tbody>
 	</table>

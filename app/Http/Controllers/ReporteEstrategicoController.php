@@ -286,43 +286,73 @@ class ReporteEstrategicoController extends Controller
     {
         $fechaI=$request->get('fecha1');
         $fechaF=$request->get('fecha2');
-        $segundo=0;
-        $noveno=0;
+        $noveno=0; $segundo=0; $sexto=0; $quinto=0; $primero=0; $quarto=0; $tercero=0; $septimo=0; $octavo=0;
         //dd("funciona");
 
         if($fechaI<=$fechaF)
         {
             //dd("fecha valida");
-            $asistencia=DB::table('asistencias')->where('fecha','>=',$fechaI)->where('fecha','<=',$fechaF)->get();
+            $asistencia=DB::table('asistencias')
+                    ->where('fecha','>=',$fechaI)
+                    ->where('fecha','<=',$fechaF)
+                    ->where('asistencia','=','0')
+                    ->get();
  
             //dd($asistencia);
             if(count($asistencia)!=0) {
                 //dd($asistencia);
 
                 foreach ($asistencia as $asis) {
-                    if ($asis->grado_id==1) {
-                        if ($asis->asistencia==0) {
-                            $segundo=$segundo+1;
-                        }else{
-
-                        }
+                    if ($asis->grado_id==6) {
+                        $primero=$primero+1;
+                    }
+                    elseif ($asis->grado_id==1) {
+                        $segundo = $segundo+1;
+                    }
+                    elseif ($asis->grado_id==8) {
+                        $tercero = $tercero+1;
+                    }
+                    elseif ($asis->grado_id==7) {
+                        $quarto = $quarto+1;
+                    }
+                    elseif ($asis->grado_id==5) {
+                        $quinto = $quinto+1;
+                    }
+                    elseif ($asis->grado_id==4) {
+                        $sexto = $sexto+1;
+                    }
+                    elseif ($asis->grado_id==9) {
+                        $septimo = $septimo+1;
+                    }
+                    elseif ($asis->grado_id==10) {
+                        $octavo = $octavo+1;
                     }
                     elseif ($asis->grado_id==3) {
-                        if ($asis->asistencia==0) {
-                            $noveno = $noveno+1;
-                        }
+                        $noveno = $noveno+1;
                     }
                 }
 
-                return view("informeEstrategicos.informe4")->with('segundo', $segundo)->with('noveno', $noveno)->with('fechaI', $fechaI)->with('fechaF', $fechaF);
+                return view("informeEstrategicos.informe4")
+                        ->with('primero', $primero)
+                        ->with('segundo', $segundo)
+                        ->with('tercero', $tercero)
+                        ->with('quarto', $quarto)
+                        ->with('quinto', $quinto)
+                        ->with('sexto', $sexto)
+                        ->with('septimo', $septimo)
+                        ->with('octavo', $octavo)
+                        ->with('noveno', $noveno)
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF);
 
             }else{
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('estrategia/reporte4');
             }
-            dd($noveno);
 
         }else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('estrategia/reporte4');           
         }
     }
 
