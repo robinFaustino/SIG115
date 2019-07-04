@@ -3,6 +3,8 @@
 namespace DSIproject\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use DSIproject\Grado;
 use DB;
 
@@ -96,6 +98,7 @@ class ReporteEstrategicoController extends Controller
         $fechaF=$request->get('fecha2');
         $grado1='0';
         $grado2='0';
+        $noveno=0; $segundo=0; $sexto=0; $quinto=0; $primero=0; $quarto=0; $tercero=0; $septimo=0; $octavo=0;
         //dd($grado2);
         //dd($fechaI);
         //dd($fechaN);
@@ -104,7 +107,7 @@ class ReporteEstrategicoController extends Controller
         {
             //dd($fechaI);
             //, 'AND','fecha','<=',$fechaF
-            $dato1=DB::table('asistencias')->where('fecha','>=',$fechaI)->where('fecha','<=',$fechaF)->get();
+            $dato1=DB::table('asistencias')->where('fecha','>=',$fechaI)->where('fecha','<=',$fechaF)->where('asistencia','=','1')->get();
             $dato2=DB::table('asistencias')->where('fecha','>=',$fechaI)->where('fecha','<=',$fechaF)->get();
             //$dato1 = DB::select('SELECT * FROM asistencias WHERE fecha='?'',$fechaI);
             //dd($dato1);
@@ -112,28 +115,53 @@ class ReporteEstrategicoController extends Controller
                 
                 foreach ($dato1 as $dato1) {
 
-                    if($dato1->grado_id== 1){
-                        //dd($dato1->grado_id);
-                        $grado1=$dato1->asistencia+$grado1;
+                    if($dato1->grado_id==6){
+                        $primero=$dato1->asistencia+$primero;
+                    }elseif($dato1->grado_id== 1){
+                        $segundo=$dato1->asistencia+$segundo;
+                    }elseif($dato1->grado_id== 8){
+                        $tercero=$dato1->asistencia+$tercero;
+                    }elseif($dato1->grado_id== 7){
+                        $quarto=$dato1->asistencia+$quarto;
+                    }elseif($dato1->grado_id== 5){
+                        $quinto=$dato1->asistencia+$quinto;
+                    }elseif($dato1->grado_id== 4){
+                        $sexto=$dato1->asistencia+$sexto;
+                    }elseif($dato1->grado_id== 9){
+                        $septimo=$dato1->asistencia+$septimo;
+                    }elseif($dato1->grado_id== 10){
+                        $octavo=$dato1->asistencia+$octavo;
                     }elseif($dato1->grado_id== 3){
-                        //dd($dato1->grado_id);
-                        $grado2=$dato1->asistencia+$grado2;
+                        $noveno=$dato1->asistencia+$noveno;
                     }
                     
                 }
-                //dd($grado2);
+                //dd($noveno);
 
-                return view('informeEstrategicos.informe1')->with('dato2', $dato2)->with('grado1', $grado1)->with('grado2', $grado2)->with('fechaI', $fechaI)->with('fechaF', $fechaF);
+                return view('informeEstrategicos.informe1')
+                        ->with('dato2', $dato2)
+                        ->with('primero', $primero)
+                        ->with('segundo', $segundo)
+                        ->with('tercero', $tercero)
+                        ->with('quarto', $quarto)
+                        ->with('quinto', $quinto)
+                        ->with('sexto', $sexto)
+                        ->with('septimo', $septimo)
+                        ->with('octavo', $octavo)
+                        ->with('noveno', $noveno)
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF);
             }else{
                 //dd("si se encuentra elementos");
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('estrategia/reporte');
             // no está vacío
             }
 
-            //dd($dato1);
         }
         else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('estrategia/reporte');
         }
 
         //return view('reportesEstrategicos.informe1')->with('grados', $grados);
