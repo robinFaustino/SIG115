@@ -63,7 +63,7 @@
         <tbody>          		
           	<tr>
           		<td>Primero</td>
-              <td></td>
+              <td>{{$primero}}</td>
               <td>{{$genero}}</td>
               <td>Reprobados</td>
             </tr>
@@ -77,42 +77,42 @@
 
             <tr>
               <td>Tercero</td>
-              <td></td>
+              <td>{{$tercero}}</td>
               <td>{{$genero}}</td>
               <td>Reprobados</td>
             </tr>
 
             <tr>
               <td>Quarto</td>
-              <td></td>
+              <td>{{$quarto}}</td>
               <td>{{$genero}}</td>
               <td>Reprobados</td>
             </tr>
 
             <tr>
               <td>Quinto</td>
-              <td></td>
+              <td>{{$quinto}}</td>
               <td>{{$genero}}</td>
               <td>Reprobados</td>
             </tr>
 
             <tr>
               <td>Sexto</td>
-              <td></td>
+              <td>{{$sexto}}</td>
               <td>{{$genero}}</td>
               <td>Reprobados</td>
             </tr>
 
             <tr>
               <td>Septimo</td>
-              <td></td>
+              <td>{{$septimo}}</td>
               <td>{{$genero}}</td>
               <td>Reprobados</td>
             </tr>
 
             <tr>
               <td>Octavo</td>
-              <td></td>
+              <td>{{$octavo}}</td>
               <td>{{$genero}}</td>
               <td>Reprobados</td>
             </tr>
