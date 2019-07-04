@@ -216,8 +216,7 @@ class ReporteEstrategicoController extends Controller
     {
         $fechaI=$request->get('fecha1');
         $fechaF=$request->get('fecha2');
-        $segundo=0;
-        $noveno=0;
+        $noveno=0; $segundo=0; $sexto=0; $quinto=0; $primero=0; $quarto=0; $tercero=0; $septimo=0; $octavo=0;
 
         if($fechaI<=$fechaF)
         {
@@ -232,32 +231,55 @@ class ReporteEstrategicoController extends Controller
             if(count($grados)!=0) {
                 //dd("si hay datos");
                 foreach ($grados as $grados) {
-                    if ($grados->grado_id==1) {
-                        $segundo=$segundo + 1;
+                    if ($grados->grado_id==6) {
+                        $primero=$primero + 1;
                     }
-                    elseif ($grados->grado_id==3) {
+                    elseif ($grados->grado_id==1) {
+                        $segundo = $segundo + 1;
+                    }elseif ($grados->grado_id==8) {
+                        $tercero = $tercero + 1;
+                    }elseif ($grados->grado_id==7) {
+                        $quarto = $quarto + 1;
+                    }elseif ($grados->grado_id==5) {
+                        $quinto = $quinto + 1;
+                    }elseif ($grados->grado_id==4) {
+                        $sexto = $sexto + 1;
+                    }elseif ($grados->grado_id==9) {
+                        $septimo = $septimo + 1;
+                    }elseif ($grados->grado_id==10) {
+                        $octavo = $octavo + 1;
+                    }elseif ($grados->grado_id==3) {
                         $noveno = $noveno + 1;
                     }
                 }
 
-                return view("informeEstrategicos.informe3")->with('segundo', $segundo)->with('noveno', $noveno)->with('fechaI', $fechaI)->with('fechaF', $fechaF);
+                return view("informeEstrategicos.informe3")
+                        ->with('primero', $primero)
+                        ->with('segundo', $segundo)
+                        ->with('tercero', $tercero)
+                        ->with('quarto', $quarto)
+                        ->with('quinto', $quinto)
+                        ->with('sexto', $sexto)
+                        ->with('septimo', $septimo)
+                        ->with('octavo', $octavo)
+                        ->with('noveno', $noveno)
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF);
                 
 
             }else{
                 
-                dd("No se encuentra elementos");
-            
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('estrategia/reporte3');
             }
 
             //dd($alum_eval);
         }
         else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('estrategia/reporte3');
         }
 
-        dd("funciona");
-
-        return view("informeEstrategicos.informe3");
     }
 
     public function informe4(Request $request)
