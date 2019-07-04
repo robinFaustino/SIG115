@@ -167,13 +167,15 @@ class ReporteTacticoController extends Controller
 
             }else{
                 //dd("si se encuentra elementos");
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('tactico/reporte2');
             // no está vacío
             }
 
         }
         else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('tactico/reporte2');
         }
 
     }

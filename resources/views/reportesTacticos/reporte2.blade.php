@@ -6,6 +6,9 @@
 
 @section('contenido')
 
+@if(Session::has('message'))
+     <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
 
 <div class="panel panel-default">
  	<div class="panel-heading"><center><h4>Alumnos ausentes por grado</h4></center></div>
@@ -41,10 +44,15 @@
             <center><label for="fecha2">Grado</label></center>
               <select name="nombre" id="nombre" class="form-control" required="nombre">
                       <option selected value="">Seleccione El Grado</option>
-                      @foreach ($grados as $grados)
-                      <option value="{{$grados->nombre}}">{{$grados->nombre}}
-                      </option>
-                      @endforeach  
+                      <option value="Primer Grado">Primer Grado</option>
+                      <option value="Segundo Grado">Segundo Grado</option>
+                      <option value="Tercer Grado">Tercer Grado</option>
+                      <option value="Quarto Grado">Quarto Grado</option>
+                      <option value="Quinto Grado">Quinto Grado</option>
+                      <option value="Sexto Grado">Sexto Grado</option>
+                      <option value="Septimo Grado">Septimo Grado</option>
+                      <option value="Octavo Grado">Octavo Grado</option>
+                      <option value="Noveno Grado">Noveno Grado</option>  
               </select>
           </div>
         </div>
