@@ -103,6 +103,7 @@ class ReporteTacticoController extends Controller
                 ->where('asistencias.fecha','<=',$fechaF)
                 ->select('alumnos.nombre as nombreAlum','alumnos.apellido','grados.nombre','alumnos.genero','asistencias.fecha')
                 ->orderBy('alumnos.genero')
+                ->orderBy('asistencias.fecha')
                 ->get();
 
             //dd($resul);
@@ -115,13 +116,15 @@ class ReporteTacticoController extends Controller
 
             }else{
                 //dd("si se encuentra elementos");
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('tactico/reporte');
             // no está vacío
             }
 
         }
         else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('tactico/reporte');
         }
 
     }
