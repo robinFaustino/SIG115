@@ -1,3 +1,6 @@
+<?php
+use Carbon\Carbon;
+?>
 @extends('layouts.general')
 
 @section('titulo', 'CEAA | Reporte')
@@ -59,20 +62,15 @@
               <td>
 
                 <?php
-/*
-                 $entra= $registro->entrada;
-                  $format = "H:i:s";
-                  $horas = DateTime::createFromFormat($format, $entra);
-                  $entrada= $horas->format(Datetime::ATOM);
-                 // $horas = new date($entrada);
-                  $sali= $registro->salida;
-                  $horas2 = DateTime::createFromFormat($format, $sali);
-                  $salida= $horas2->format(Datetime::ATOM);
-                 // echo $salida->modify($entrada);
-                   echo date_diff( DateTimeInterface $entrada, DateTimeInterface $salida [, bool $absolute = FALSE ] ) : DateInterval
-                   */
+                $entrada = Carbon::createFromFormat('H:i:s',$registro->entrada);
+                $salida = Carbon::createFromFormat('H:i:s',$registro->salida);
+                $diff = $entrada->diffInHours($salida);
+                $total = $total + $diff;
+                echo $total;
+                
+                ?>
 
-              ?></td>
+              </td>
             </tr>
         @endforeach         
     </tbody>

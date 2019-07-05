@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use DSIproject\Grado;
 use DB;
+use Carbon\Carbon;
 
 class ReporteTacticoController extends Controller
 {
@@ -313,6 +314,7 @@ class ReporteTacticoController extends Controller
     {
         $fechaI=$request->get('fecha1');
         $fechaF=$request->get('fecha2');
+        $total = 0;
 
          if($fechaI<=$fechaF)
         {
@@ -322,16 +324,19 @@ class ReporteTacticoController extends Controller
             ->join('users','docentes.user_id','=','users.id')
             ->where('fecha','>=',$fechaI)
             ->where('fecha','<=',$fechaF)
-            ->select('users.nombre as nombre', 'users.apellido as apellido', 'docentes.nip as nip', 'jornadas.hora_entrada as entrada', 'jornadas.hora_salida as salida')
+            ->groupBy('users.nombre', 'users.apellido', 'docentes.nip', 'jornadas.hora_entrada', 'jornadas.hora_salida')
             ->orderBy('docentes.id')
+            ->select('users.nombre as nombre', 'users.apellido as apellido', 'docentes.nip as nip', 'jornadas.hora_entrada as entrada', 'jornadas.hora_salida as salida')
             ->get();
 
            // dd($registros);
+            //$carbon = new Carbon;
 
             return view('informeTactico.informe5')
                     ->with('fechaI',$fechaI)
                     ->with('fechaF',$fechaF)
-                    ->with('registros',$registros);
+                    ->with('registros',$registros)
+                    ->with('total', $total);
 
             dd($registros);
         } else{
