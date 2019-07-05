@@ -104,6 +104,7 @@ class ReporteTacticoController extends Controller
                 ->where('asistencias.fecha','<=',$fechaF)
                 ->select('alumnos.nombre as nombreAlum','alumnos.apellido','grados.nombre','alumnos.genero','asistencias.fecha')
                 ->orderBy('alumnos.genero')
+                ->orderBy('asistencias.fecha')
                 ->get();
 
             //dd($resul);
@@ -116,13 +117,15 @@ class ReporteTacticoController extends Controller
 
             }else{
                 //dd("si se encuentra elementos");
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('tactico/reporte');
             // no está vacío
             }
 
         }
         else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('tactico/reporte');
         }
 
     }
@@ -165,13 +168,15 @@ class ReporteTacticoController extends Controller
 
             }else{
                 //dd("si se encuentra elementos");
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('tactico/reporte2');
             // no está vacío
             }
 
         }
         else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('tactico/reporte2');
         }
 
     }
@@ -183,8 +188,7 @@ class ReporteTacticoController extends Controller
         $fechaI=$request->get('fecha1');
         $fechaF=$request->get('fecha2');
         $genero=$request->get('genero');
-        $noveno=0;
-        $segundo=0;
+        $noveno=0; $segundo=0; $sexto=0; $quinto=0; $primero=0; $quarto=0; $tercero=0; $septimo=0; $octavo=0;
         //dd($genero);
 
         //dd($request->all());
@@ -205,30 +209,53 @@ class ReporteTacticoController extends Controller
 
             if(count($resul)!=0) {
                 foreach ($resul as $resul) {
-                    if($resul->id==1)
+                    if($resul->id==6)
                     {
-                        $segundo=$segundo+1;  
+                        $primero=$primero+1;  
+                    }elseif ($resul->id==1) {
+                        $segundo=$segundo+1;
+                    }elseif ($resul->id==8) {
+                        $tercero=$tercero+1;
+                    }elseif ($resul->id==7) {
+                        $quarto=$quarto+1;
+                    }elseif ($resul->id==5) {
+                        $quinto=$quinto+1;
+                    }elseif ($resul->id==4) {
+                        $sexto=$sexto+1;
+                    }elseif ($resul->id==9) {
+                        $septimo=$septimo+1;
+                    }elseif ($resul->id==10) {
+                        $octavo=$octavo+1;
                     }elseif ($resul->id==3) {
                         $noveno=$noveno+1;
                     }   
                 }
                 //dd($segundo);
                 return view('informeTactico.informe3')
-                        ->with('segundo', $segundo)
                         ->with('fechaI', $fechaI)
                         ->with('fechaF', $fechaF)
+                        ->with('primero', $primero)
+                        ->with('segundo', $segundo)
+                        ->with('tercero', $tercero)
+                        ->with('quarto', $quarto)
+                        ->with('quinto', $quinto)
+                        ->with('sexto', $sexto)
+                        ->with('septimo', $septimo)
+                        ->with('octavo', $octavo)
                         ->with('noveno', $noveno)
                         ->with('genero', $genero);
 
             }else{
                 //dd("si se encuentra elementos");
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('tactico/reporte3');
             // no está vacío
             }
 
         }
         else{
-            dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('tactico/reporte3');
         }        
 
 

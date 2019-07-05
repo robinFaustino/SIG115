@@ -6,6 +6,10 @@
 
 @section('contenido')
 
+@if(Session::has('message'))
+     <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
+
 <style type="text/css">
 body{text-align: center;
 	background-color: red;
