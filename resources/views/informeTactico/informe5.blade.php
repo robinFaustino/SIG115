@@ -10,7 +10,7 @@ use Carbon\Carbon;
 <button type="button" class="btn btn-primary" style="margin-right: 5px;" onclick="window.print()">
             <i class="fa fa-download"></i> Generar PDF
 </button>
-<a href="{{ url('estrategia/reporte4') }}"><button class="btn btn-danger">Regresar</button></a>
+<a href="{{ url('estrategia/reporte5') }}"><button class="btn btn-danger">Regresar</button></a>
 <a href="#"><button class="btn btn-info">Ayuda</button></a>
 </center>
 

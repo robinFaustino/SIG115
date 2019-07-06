@@ -66,8 +66,7 @@
             <center><label for="fecha2">Seccion</label></center>
               <select name="seccion" id="seccion" class="form-control" required="seccion">
                 <option selected value="">Seleccione la seccion</option>
-                <option value="A">A</option>
-                <option value="B">B</option>     
+                <option value="A">A</option>  
               </select>
           </div>
         </div>

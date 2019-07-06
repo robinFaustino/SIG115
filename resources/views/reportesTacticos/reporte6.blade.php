@@ -67,8 +67,7 @@
             <center><label for="fecha2">Seccion</label></center>
               <select name="seccion" id="seccion" class="form-control" required="seccion">
                 <option selected value="">Seleccione la seccion</option>
-                <option value="A">A</option>
-                <option value="B">B</option>     
+                <option value="A">A</option>    
               </select>
           </div>
         </div>
@@ -96,7 +95,7 @@
   		<div class="row">
  	    	<center>
  	    		<a href="#"><button class="btn btn-info">Generar reporte</button></a>
- 	    		<a href="#"><button class="btn btn-danger">Salir</button></a>
+ 	    		<a href="{{ route('reportesTacticos.index') }}" class="btn btn-danger">Salir</a>
  	    		<a href="#"><button class="btn btn-Warning">Ayuda</button></a>
  	    	</center>
   		</div>

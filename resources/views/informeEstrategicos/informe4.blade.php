@@ -53,47 +53,47 @@
         <tbody>          		
           	<tr>
               <td>Primer Grado</td>
-              <td>{{$primero}}</td>
+              <td>{{$primero}}%</td>
             </tr>
 
             <tr>
               <td>Segundo Grado</td>
-              <td>{{$segundo}}</td>
+              <td>{{$segundo}}%</td>
             </tr>
 
             <tr>
               <td>Tercer Grado</td>
-              <td>{{$tercero}}</td>
+              <td>{{$tercero}}%</td>
             </tr>
 
             <tr>
               <td>Quarto Grado</td>
-              <td>{{$quarto}}</td>
+              <td>{{$quarto}}%</td>
             </tr>
 
             <tr>
               <td>Quinto Grado</td>
-              <td>{{$quinto}}</td>
+              <td>{{$quinto}}%</td>
             </tr>
 
             <tr>
               <td>Sexto Grado</td>
-              <td>{{$sexto}}</td>
+              <td>{{$sexto}}%</td>
             </tr>
 
             <tr>
               <td>Septimo Grado</td>
-              <td>{{$septimo}}</td>
+              <td>{{$septimo}}%</td>
             </tr>
 
             <tr>
               <td>Octavo Grado</td>
-              <td>{{$octavo}}</td>
+              <td>{{$octavo}}%</td>
             </tr>
 
             <tr>
               <td>Noveno Grado</td>
-              <td>{{$noveno}}</td>
+              <td>{{$noveno}}%</td>
             </tr>          
 		</tbody>
 	</table>

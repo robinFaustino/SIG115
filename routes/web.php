@@ -57,11 +57,8 @@ Route::group(['middleware' => 'auth'], function() {
         // Valores
         Route::resource('valores','ValorController'); 
 
-        //para reportes
-        Route::resource('reportesEstrategicos','ReporteEstrategicoController');
+        
 
-        //para reportes tactico de subdirector
-        Route::resource('reportesTacticos','ReporteTacticoController');
     });
 
     /**
@@ -132,6 +129,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('descargar/grados', 'GradoController@pdf')->name('grados.pdf');
 
 Route::group(['middleware' => ['estra']], function() {
+    //para reportes
+        Route::resource('reportesEstrategicos','ReporteEstrategicoController');
 
     //ruta para la vista de parametros reportes estrategicos
     Route::get('estrategia/reporte', 'ReporteEstrategicoController@reportes')
@@ -155,6 +154,9 @@ Route::group(['middleware' => ['estra']], function() {
  });
 
 Route::group(['middleware' => ['tacti']], function() {
+    
+        //para reportes tactico de subdirector
+        Route::resource('reportesTacticos','ReporteTacticoController');
 
     //rutas para las vista de parametros reportes tacticos
     Route::get('tactico/reporte', 'ReporteTacticoController@reportes')
