@@ -7,7 +7,7 @@
 <button type="button" class="btn btn-primary" style="margin-right: 5px;" onclick="window.print()">
             <i class="fa fa-download"></i> Generar PDF
 </button>
-<a href="{{ url('estrategia/reporte4') }}"><button class="btn btn-danger">Regresar</button></a>
+<a href="{{ url('estrategia/reporte5') }}"><button class="btn btn-danger">Regresar</button></a>
 <a href="#"><button class="btn btn-info">Ayuda</button></a>
 </center>
 
@@ -46,21 +46,55 @@
      <table class="table table-hover table-striped table-bordered table-quitar-margen">
         <thead>
           <tr>
-            <th>Nombre Alumno</th>
             <th>Grado</th>
-            <th>Materia</th>
-            <th>Nota</th>
+            <th>Alumnos sobresalientes</th>
           </tr>
         </thead>
         <tbody>
-        @foreach($registros as $registro)          		
-          	<tr>
-          		<td>{{ $registro->nombreAlum }} {{ $registro->apellidoAlum }}</td>
-              <td>{{ $registro->grado }}</td>
-              <td>{{ $registro->materia }}</td>
-              <td>{{ $registro->nota }}</td>
+            <tr>
+              <td>Primero</td>
+              <td>{{$primero}}</td>
             </tr>
-        @endforeach         
+
+            <tr>
+              <td>Segundo  </td>
+              <td>{{$segundo}}</td>
+            </tr> 
+
+            <tr>
+              <td>Tercer</td>
+              <td>{{$tercero}}</td>
+            </tr> 
+
+            <tr>
+              <td>Cuarto</td>
+              <td>{{$quarto}}</td>
+            </tr>   
+
+            <tr>
+              <td>Quinto</td>
+              <td>{{$quinto}}</td>
+            </tr>   
+
+            <tr>
+              <td>Sexto</td>
+              <td>{{$sexto}}</td>
+            </tr> 
+
+            <tr>
+              <td>Septimo</td>
+              <td>{{$septimo}}</td>
+            </tr> 
+
+            <tr>
+              <td>Octavo</td>
+              <td>{{$octavo}}</td>
+            </tr> 
+
+            <tr>
+              <td>Noveno</td>
+              <td>{{$noveno}}</td>
+            </tr>         
 		</tbody>
 	</table>
 </div>

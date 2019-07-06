@@ -174,6 +174,7 @@ class ReporteEstrategicoController extends Controller
         $grado1='0';
         $grado2='0';
         //dd($fechaI, $fechaF);
+        $noveno=0; $segundo=0; $sexto=0; $quinto=0; $primero=0; $quarto=0; $tercero=0; $septimo=0; $octavo=0;
 
         if($fechaI<=$fechaF)
         {
@@ -187,26 +188,53 @@ class ReporteEstrategicoController extends Controller
                 
                 foreach ($dato1 as $dato1) {
 
-                    if($dato1->grado_id== 1){
-                        //dd($dato1->grado_id);
-                        $grado1=$dato1->asistencia+$grado1;
+                    if($dato1->grado_id==6){
+                        $primero=$dato1->asistencia+$primero;
+                    }elseif($dato1->grado_id== 1){
+                        $segundo=$dato1->asistencia+$segundo;
+                    }elseif($dato1->grado_id== 8){
+                        $tercero=$dato1->asistencia+$tercero;
+                    }elseif($dato1->grado_id== 7){
+                        $quarto=$dato1->asistencia+$quarto;
+                    }elseif($dato1->grado_id== 5){
+                        $quinto=$dato1->asistencia+$quinto;
+                    }elseif($dato1->grado_id== 4){
+                        $sexto=$dato1->asistencia+$sexto;
+                    }elseif($dato1->grado_id== 9){
+                        $septimo=$dato1->asistencia+$septimo;
+                    }elseif($dato1->grado_id== 10){
+                        $octavo=$dato1->asistencia+$octavo;
                     }elseif($dato1->grado_id== 3){
-                        //dd($dato1->grado_id);
-                        $grado2=$dato1->asistencia+$grado2;
+                        $noveno=$dato1->asistencia+$noveno;
                     }
                     
                 }
                 //dd($grado2);
                 //return view('informeEstrategicos.informe2');
-                return view('informeEstrategicos.informe2')->with('dato2', $dato2)->with('grado1', $grado1)->with('grado2', $grado2)->with('fechaI', $fechaI)->with('fechaF', $fechaF)->with('docente',$docente);
+                return view('informeEstrategicos.informe2')
+                        ->with('dato2', $dato1)
+                        ->with('primero', $primero)
+                        ->with('segundo', $segundo)
+                        ->with('tercero', $tercero)
+                        ->with('quarto', $quarto)
+                        ->with('quinto', $quinto)
+                        ->with('sexto', $sexto)
+                        ->with('septimo', $septimo)
+                        ->with('octavo', $octavo)
+                        ->with('noveno', $noveno)
+                        ->with('fechaI', $fechaI)
+                        ->with('fechaF', $fechaF);
             }else{
                 //dd("si se encuentra elementos");
-                dd("No se encuentra elementos");
+               Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('estrategia/reporte2');
             // no está vacío
             }
         }
         else{
-            dd('error');
+            //dd('error');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('estrategia/reporte2');
         }
 
         
@@ -367,35 +395,74 @@ class ReporteEstrategicoController extends Controller
         $fechaI=$request->get('fecha1');
         $fechaF=$request->get('fecha2');
         $nota=$request->get('nota');
+        $noveno=0; $segundo=0; $sexto=0; $quinto=0; $primero=0; $quarto=0; $tercero=0; $septimo=0; $octavo=0;
+
 
         if($fechaI<=$fechaF)
         {
             //dd("fecha valida");
-            $registros=DB::table('alumno_nota')
+            $dato1=DB::table('alumno_nota')
                 ->join('alumnos','alumno_nota.alumno_id','=','alumnos.id')
                 ->join('grados','alumno_nota.grado_id','=','grados.id')
                 ->join('materias','alumno_nota.materia_id','=','materias.id')
                 ->where('alumno_nota.trimestre1','>=',$nota)
                 ->where('alumno_nota.created_at','>=',$fechaI)
                 ->where('alumno_nota.updated_at','<=',$fechaF)
-                ->select('alumnos.nombre as nombreAlum','alumnos.apellido as apellidoAlum','grados.nombre as grado','materias.nombre as materia','alumno_nota.trimestre1 as nota')
+                ->select('alumnos.nombre as nombreAlum','alumnos.apellido as apellidoAlum','grados.nombre as grado','materias.nombre as materia','alumno_nota.trimestre1', 'alumno_nota.grado_id')
                 ->orderBy('grados.id')
                 ->get();
 
-            //dd($registros);
-             if(count($registros)!=0) {
+                //dd($dato1);
+             if(count($dato1)!=0) {
+
+                    foreach ($dato1 as $dato1) {
+
+                    if($dato1->grado_id==6){
+                        $primero=$dato1->trimestre1+$primero;
+                    }elseif($dato1->grado_id== 1){
+                        $segundo=$dato1->trimestre1+$segundo;
+                    }elseif($dato1->grado_id== 8){
+                        $tercero=$dato1->trimestre1+$tercero;
+                    }elseif($dato1->grado_id== 7){
+                        $quarto=$dato1->trimestre1+$quarto;
+                    }elseif($dato1->grado_id== 5){
+                        $quinto=$dato1->trimestre1+$quinto;
+                    }elseif($dato1->grado_id== 4){
+                        $sexto=$dato1->trimestre1+$sexto;
+                    }elseif($dato1->grado_id== 9){
+                        $septimo=$dato1->trimestre1+$septimo;
+                    }elseif($dato1->grado_id== 10){
+                        $octavo=$dato1->trimestre1+$octavo;
+                    }elseif($dato1->grado_id== 3){
+                        $noveno=$dato1->trimestre1+$noveno;
+                    }
+                    
+                }
 
                 return view('informeEstrategicos.informe5')
-                        ->with('registros', $registros)
+                         ->with('dato2', $dato1)
+                        ->with('primero', $primero)
+                        ->with('segundo', $segundo)
+                        ->with('tercero', $tercero)
+                        ->with('quarto', $quarto)
+                        ->with('quinto', $quinto)
+                        ->with('sexto', $sexto)
+                        ->with('septimo', $septimo)
+                        ->with('octavo', $octavo)
+                        ->with('noveno', $noveno)
                         ->with('fechaI', $fechaI)
                         ->with('fechaF', $fechaF);
 
             }else{
-                dd("No se encuentra elementos");
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('estrategia/reporte5');
+                //dd("No se encuentra elementos");
             }
         }
         else {
-            dd('Error en el rago de fecha');
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('estrategia/reporte5');   
+            //dd('Error en el rago de fecha');
         }
     }
 //

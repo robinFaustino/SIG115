@@ -57,14 +57,49 @@ $i=1;
         </thead>
         <tbody>         		
           	<tr>
-          		<td>Docente 1</td>
-          		<td>{{$grado1}}</td>
+          		<td>Victor Ceron </td>
+          		<td>{{$primero}}</td>
             </tr>
 
             <tr>
-          		<td>Docente 2</td>
-          		<td>{{$grado2}}</td>
-            </tr>     
+          		<td>Frank Urrutia </td>
+          		<td>{{$segundo}}</td>
+            </tr> 
+
+            <tr>
+              <td>Francisco Mejia </td>
+              <td>{{$tercero}}</td>
+            </tr> 
+
+            <tr>
+              <td>Wilfredo Garcia </td>
+              <td>{{$quarto}}</td>
+            </tr>   
+
+            <tr>
+              <td>Jaime Gomez </td>
+              <td>{{$quinto}}</td>
+            </tr>   
+
+            <tr>
+              <td>Aide Hernandez </td>
+              <td>{{$sexto}}</td>
+            </tr> 
+
+            <tr>
+              <td>Regina Palacios </td>
+              <td>{{$septimo}}</td>
+            </tr> 
+
+            <tr>
+              <td>Cornelio Diaz </td>
+              <td>{{$octavo}}</td>
+            </tr> 
+
+            <tr>
+              <td>Ana Ceron </td>
+              <td>{{$noveno}}</td>
+            </tr> 
 		</tbody>
 	</table>
 </div>

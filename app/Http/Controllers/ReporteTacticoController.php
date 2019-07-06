@@ -341,7 +341,7 @@ class ReporteTacticoController extends Controller
     {
         $fechaI=$request->get('fecha1');
         $fechaF=$request->get('fecha2');
-        $total = 0;
+        $profe1 = 0; $profe2 = 0; $profe3 = 0; $profe4 = 0; $profe5 = 0; $profe6 = 0; $profe7 = 0; $profe8 = 0; $profe9 = 0;
 
          if($fechaI<=$fechaF)
         {
@@ -358,16 +358,73 @@ class ReporteTacticoController extends Controller
 
            // dd($registros);
             //$carbon = new Carbon;
+            if(count($registros)!=0) {
+                foreach ($registros as $reg) {
+                    $entrada = Carbon::createFromFormat('H:i:s',$reg->entrada);
+                    $salida = Carbon::createFromFormat('H:i:s',$reg->salida);
+                    if($reg->nip == 2564879){
+                    $diff = $entrada->diffInHours($salida);
+                    $profe1 = $profe1 + $diff;
+                    }
+                    elseif ($reg->nip == 5689741) {
+                    $diff = $entrada->diffInHours($salida);
+                    $profe2 = $profe2 + $diff;   
+                    }
+                    elseif ($reg->nip == 5641245) {
+                    $diff = $entrada->diffInHours($salida);
+                    $profe3 = $profe3 + $diff;   
+                    }
+                    elseif ($reg->nip == 5897841) {
+                    $diff = $entrada->diffInHours($salida);
+                    $profe4 = $profe4 + $diff;   
+                    }
+                    elseif ($reg->nip == 5487441) {
+                    $diff = $entrada->diffInHours($salida);
+                    $profe5 = $profe5 + $diff;   
+                    }
+                    elseif ($reg->nip == 56897454) {
+                    $diff = $entrada->diffInHours($salida);
+                    $profe6 = $profe6 + $diff;   
+                    }
+                    elseif ($reg->nip == 2568741) {
+                    $diff = $entrada->diffInHours($salida);
+                    $profe7 = $profe7 + $diff;   
+                    }
+                    elseif ($reg->nip == 3265454) {
+                    $diff = $entrada->diffInHours($salida);
+                    $profe8 = $profe8 + $diff;   
+                    }
+                    elseif ($reg->nip == 2564258) {
+                    $diff = $entrada->diffInHours($salida);
+                    $profe9 = $profe9 + $diff;   
+                    }
+
+                }
 
             return view('informeTactico.informe5')
+                    ->with('profe1',$profe1)
+                    ->with('profe2',$profe2)
+                    ->with('profe3',$profe3)
+                    ->with('profe4',$profe4)
+                    ->with('profe5',$profe5)
+                    ->with('profe6',$profe6)
+                    ->with('profe7',$profe7)
+                    ->with('profe8',$profe8)
+                    ->with('profe9',$profe9)
                     ->with('fechaI',$fechaI)
                     ->with('fechaF',$fechaF)
-                    ->with('registros',$registros)
-                    ->with('total', $total);
+                    ->with('registros',$registros);
+            }
+            else{
+                Session::flash('message', 'No existen registro con esos parametros');
+                return redirect('tactico/reporte5');
+            }
 
-            dd($registros);
+            //dd($registros);
         } else{
-            dd("error");
+            //dd("error");
+            Session::flash('message', 'Error la fecha inicial debe ser menor o igual que la fecha final');
+            return redirect('tactico/reporte5');
         }
 
     }

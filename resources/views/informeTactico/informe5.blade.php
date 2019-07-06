@@ -55,24 +55,59 @@ use Carbon\Carbon;
           </tr>
         </thead>
         <tbody>
-        @foreach($registros as $registro)             
-            <tr>
-              <td>{{ $registro->nip }}</td>
-              <td>{{ $registro->nombre }} {{ $registro->apellido }}</td>
-              <td>
-
-                <?php
-                $entrada = Carbon::createFromFormat('H:i:s',$registro->entrada);
-                $salida = Carbon::createFromFormat('H:i:s',$registro->salida);
-                $diff = $entrada->diffInHours($salida);
-                $total = $total + $diff;
-                echo $total;
-                
-                ?>
-
-              </td>
+<tr>
+              <td>2564879</td>
+              <td>Victor Ceron </td>
+              <td>{{$profe1}}</td>
             </tr>
-        @endforeach         
+
+            <tr>
+              <td>5689741</td>
+              <td>Frank Urrutia </td>
+              <td>{{$profe2}}</td>
+            </tr> 
+
+            <tr>
+              <td>5641245</td>
+              <td>Francisco Mejia </td>
+              <td>{{$profe3}}</td>
+            </tr> 
+
+            <tr>
+              <td>5897841</td>
+              <td>Wilfredo Garcia </td>
+              <td>{{$profe4}}</td>
+            </tr>   
+
+            <tr>
+              <td>5487441</td>
+              <td>Jaime Gomez </td>
+              <td>{{$profe5}}</td>
+            </tr>   
+
+            <tr>
+              <td>56897454</td>
+              <td>Aide Hernandez </td>
+              <td>{{$profe6}}</td>
+            </tr> 
+
+            <tr>
+              <td>2568741</td>
+              <td>Regina Palacios </td>
+              <td>{{$profe7}}</td>
+            </tr> 
+
+            <tr>
+              <td>3265454</td>
+              <td>Cornelio Diaz </td>
+              <td>{{$profe8}}</td>
+            </tr> 
+
+            <tr>
+              <td>2564874</td>
+              <td>Ana Ceron </td>
+              <td>{{$profe9}}</td>
+            </tr>        
     </tbody>
   </table>
 </div>

@@ -6,12 +6,15 @@
 
 @section('contenido')
 
+@if(Session::has('message'))
+     <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
 
 <div class="panel panel-default">
  	<div class="panel-heading"><center><h4>Porcentaje de alumnos sobresalientes</h4></center></div>
  	<div class="panel-body">
 	
- 	{!!Form::open(array('url'=>'informe4Extrategico','method'=>'POST','autocomplete'=>'off'))!!}
+ 	{!!Form::open(array('url'=>'informe5Extrategico','method'=>'POST','autocomplete'=>'off'))!!}
     {{Form::token()}}	
  	    <div class="row">
  	    	<div class="form-group"> 
@@ -40,9 +43,9 @@
             <center><label for="nota">Promedio de Notas</label></center>
             <select name="nota" id="nota" class="form-control" required="Nota Promedio">
               <option value="">-- Seleccione una opción --</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
+              <option value="8">>=8</option>
+              <option value="9">>=9</option>
+              <option value="10">>=10</option>
             </select>
           </div>
         </div>

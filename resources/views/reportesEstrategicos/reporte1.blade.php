@@ -10,18 +10,6 @@
      <p class="alert alert-info">{{ Session::get('message') }}</p>
 @endif
 
-<style type="text/css">
-body{text-align: center;
-	background-color: red;
-}
-
-#contenedor{
-width: 800px;
-margin: 0 auto;
-text-align: left;
-}
-</style>
-
 <div class="panel panel-default">
  	<div class="panel-heading"><center><h4>Asistencia totales de alumnos por grado</h4></center></div>
  	<div class="panel-body">

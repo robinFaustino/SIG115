@@ -6,17 +6,9 @@
 
 @section('contenido')
 
-<style type="text/css">
-body{text-align: center;
-	background-color: red;
-}
-
-#contenedor{
-width: 800px;
-margin: 0 auto;
-text-align: left;
-}
-</style>
+@if(Session::has('message'))
+     <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
 
 <div class="panel panel-default">
  	<div class="panel-heading"><center><h4>Asistencia de los docentes</h4></center></div>
