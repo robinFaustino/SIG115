@@ -5,7 +5,7 @@ namespace DSIproject\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Direc
+class Admin
 {
     /**
      * Implementación de Guard.
@@ -34,7 +34,7 @@ class Direc
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->user()->estra()) {
+        if ($this->auth->user()->admin()) {
             return $next($request);
         } else {
             abort(403);

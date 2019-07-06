@@ -53,47 +53,47 @@
         <tbody>
             <tr>
               <td>Primero</td>
-              <td>{{$primero}}</td>
+              <td>{{$primero}}%</td>
             </tr>
 
             <tr>
               <td>Segundo  </td>
-              <td>{{$segundo}}</td>
+              <td>{{$segundo}}%</td>
             </tr> 
 
             <tr>
               <td>Tercer</td>
-              <td>{{$tercero}}</td>
+              <td>{{$tercero}}%</td>
             </tr> 
 
             <tr>
               <td>Cuarto</td>
-              <td>{{$quarto}}</td>
+              <td>{{$quarto}}%</td>
             </tr>   
 
             <tr>
               <td>Quinto</td>
-              <td>{{$quinto}}</td>
+              <td>{{$quinto}}%</td>
             </tr>   
 
             <tr>
               <td>Sexto</td>
-              <td>{{$sexto}}</td>
+              <td>{{$sexto}}%</td>
             </tr> 
 
             <tr>
               <td>Septimo</td>
-              <td>{{$septimo}}</td>
+              <td>{{$septimo}}%</td>
             </tr> 
 
             <tr>
               <td>Octavo</td>
-              <td>{{$octavo}}</td>
+              <td>{{$octavo}}%</td>
             </tr> 
 
             <tr>
               <td>Noveno</td>
-              <td>{{$noveno}}</td>
+              <td>{{$noveno}}%</td>
             </tr>         
 		</tbody>
 	</table>

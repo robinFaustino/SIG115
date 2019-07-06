@@ -61,7 +61,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         // Middlewares agregados.
-        'direc' => \DSIproject\Http\Middleware\Direc::class,
-        'secre' => \DSIproject\Http\Middleware\Secre::class,
+        'estra' => \DSIproject\Http\Middleware\Direc::class,
+        'tacti' => \DSIproject\Http\Middleware\Secre::class,
+        'admin' => \DSIproject\Http\Middleware\Admin::class,
     ];
 }

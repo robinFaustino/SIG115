@@ -126,7 +126,7 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        @if (Auth::user()->direc())
+        @if (Auth::user()->estra())
         <li class="header">ESTRATEGICO</li>
          <li class="treeview">
           <a href="#">
@@ -142,29 +142,10 @@
             <li><a href="{{ route('reportesEstrategicos.reporte4') }}"><i class="fa fa-circle-o"></i> Porcentaje de alumnos ausentes</a></li>
             <li><a href="{{ route('reportesEstrategicos.reporte5') }}"><i class="fa fa-circle-o"></i> Porcentaje de alumnos sobresalientes</a></li>
           </ul>
+          @endif
         </li>
-      <!--  <li>
-          <a href="{{ route('grados.index') }}">
-            <i class="fa fa-graduation-cap"></i> <span>Grados</span>
-          </a>
-        </li>
-        @endif
-        <li>
-          <a href="{{ route('alumnos.index') }}">
-            <i class="fa fa-child"></i> <span>Alumnos</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('matriculas.index') }}">
-            <i class="fa fa-clipboard"></i> <span>Matrículas</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('notas.index') }}">
-            <i class="fa fa-star"></i> <span>Notas</span>
-          </a>
-        </li> -->
-        @if (Auth::user()->direc())
+
+        @if (Auth::user()->tacti())
         <li class="header">TÁCTICO</li>
 
         <li class="treeview">
@@ -183,57 +164,10 @@
             <li><a href="{{ route('reportesTacticos.reporte6') }}"><i class="fa fa-circle-o"></i> Indice conductual</a></li>
           </ul>
         </li>
+        @endif
 
-     <!--   <li>
-          <a href="{{ route('docentes.index') }}">
-            <i class="fa fa-users"></i> <span>Docentes</span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="{{ route('jornadas.index') }}">
-            <i class="fa fa-clock-o"></i> <span>Jornada Laboral</span>
-          </a>
-        </li> -->
-        @endif
+        @if (Auth::user()->admin())
         <li class="header">ADMINISTRACIÓN</li>
-       <!-- <li>
-          <a href="{{ route('reportes') }}">
-            <i class="fa fa-book"></i> <span>Reportes</span>
-          </a>
-        </li>
-        @if (Auth::user()->direc() || Auth::user()->secre())
-        <li>
-          <a href="{{ route('inventarios.index') }}">
-            <i class="fa fa-cubes"></i> <span>Inventarios</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('recursos.index') }}">
-            <i class="glyphicon glyphicon-tasks"></i> <span>Recursos</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('pagos.index') }}">
-            <i class="fa fa-cutlery"></i> <span>Pago de alimentos</span>
-          </a>
-        </li>
-        @endif
-        @if (Auth::user()->direc())
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-cog"></i> <span>Configuración</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-         <ul class="treeview-menu">
-            <li><a href=" {{ route('nivel.index')}} "><i class="fa fa-circle-o"></i> Niveles educativos</a></li>
-            <li><a href=" {{ route('anios.index') }}"><i class="fa fa-circle-o"></i> Años escolares</a></li>
-            <li><a href=" {{ route('materias.index')}} "><i class="fa fa-circle-o"></i> Materias</a></li>
-            <li><a href=" {{ route('valores.index')}} "><i class="fa fa-circle-o"></i> Valores</a></li>
-          </ul> -->
-        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-shield"></i> <span>Seguridad</span>

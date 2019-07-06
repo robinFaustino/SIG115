@@ -75,27 +75,36 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function direc() {
-        return $this->rol->codigo === 'direc';
+     public function estra() {
+        return $this->rol->codigo === 'estra';
     }
+   /* public function direc() {
+        return $this->rol->codigo === 'direc';
+    }*/
 
     /**
      * Indica si el usuario tiene rol de secretaria.
      *
      * @return bool
      */
-    public function secre() {
-        return $this->rol->codigo === 'secre';
+    public function tacti() {
+        return $this->rol->codigo === 'tacti';
     }
+    /*public function secre() {
+        return $this->rol->codigo === 'secre';
+    }*/
 
     /**
      * Indica si el usuario tiene rol de docente.
      *
      * @return bool
      */
-    public function docen() {
-        return $this->rol->codigo === 'docen';
+    public function admin() {
+        return $this->rol->codigo === 'admin';
     }
+    /*public function docen() {
+        return $this->rol->codigo === 'docen';
+    }*/
 
     /**
      * Obtiene el nombre y apellido del usuario.

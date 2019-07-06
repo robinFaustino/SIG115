@@ -34,7 +34,7 @@ class Secre
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->user()->secre() || $this->auth->user()->direc()) {
+        if ($this->auth->user()->tacti()) {
             return $next($request);
         } else {
             abort(403);

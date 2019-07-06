@@ -37,7 +37,7 @@ class UserRequest extends FormRequest
         );
 
         if ($user == null) {
-            $rules['password'] .= '|required|min:6';
+            $rules['password'] .= '|required|min:8';
         }
 
         return $rules;

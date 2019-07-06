@@ -30,14 +30,17 @@ Route::group(['middleware' => 'auth'], function() {
 
     /**
      * Solo tienen acceso usuarios con rol de director.
+     *
      */
-    Route::group(['middleware' => 'direc'], function() {
+    Route::group(['middleware' => ['admin']], function() {
 
-        // Roles de usuario.
+    // Roles de usuario.
         Route::resource('roles', 'RolController');
 
         // Usuarios.
         Route::resource('users', 'UserController');
+ });
+    Route::group(['middleware' => 'direc'], function() {
 
         // Materias.
         Route::resource('materias', 'MateriaController');
@@ -128,6 +131,8 @@ Route::group(['middleware' => 'auth'], function() {
     // Para descargar PDF de Grados
     Route::get('descargar/grados', 'GradoController@pdf')->name('grados.pdf');
 
+Route::group(['middleware' => ['estra']], function() {
+
     //ruta para la vista de parametros reportes estrategicos
     Route::get('estrategia/reporte', 'ReporteEstrategicoController@reportes')
     ->name('reportesEstrategicos.reporte');
@@ -146,6 +151,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('informe3Extrategico', 'ReporteEstrategicoController@informe3');
     Route::post('informe4Extrategico', 'ReporteEstrategicoController@informe4');
     Route::post('informe5Extrategico', 'ReporteEstrategicoController@informe5');
+
+ });
+
+Route::group(['middleware' => ['tacti']], function() {
 
     //rutas para las vista de parametros reportes tacticos
     Route::get('tactico/reporte', 'ReporteTacticoController@reportes')
@@ -168,7 +177,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('informe4Tactico', 'ReporteTacticoController@informe4');
     Route::post('informe5Tactico', 'ReporteTacticoController@informe5');
     Route::post('informe6Tactico', 'ReporteTacticoController@informe6');
-
+ });
 
     // Para descargar PDF de Docentes
     Route::get('descargar/docentes', 'DocenteController@pdf')->name('docentes.pdf');
