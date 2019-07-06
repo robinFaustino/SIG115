@@ -47,7 +47,7 @@
         <thead>
           <tr>
             <th>Grados</th>
-            <th>Reprobados</th>
+            <th>Ausentes</th>
           </tr>
         </thead>
         <tbody>          		
