@@ -29,7 +29,7 @@ $i=1;
 
     <div class="col-xs-12 col-sm-4">
   	    <h3 align="center">
-  		Centro Escolar Anastasio Aquino <br>
+  		Centro Escolar El Torogoz <br>
 		Canton San Antonio Abajo <br>
 		Santiago Nonualco, La Paz<br>
 		Codigo 12053 <br>
